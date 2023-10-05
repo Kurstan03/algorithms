@@ -6,15 +6,12 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        //bubble sort
         int[] array = new int[]{2, 5, 1, 8, 200, 3, 9, 1};
         int[] sortedArray = insertionSort(array);
         System.out.println(Arrays.toString(sortedArray));
-
-        //binary search
-//        System.out.println(binarySearch(sortedArray, 5));
     }
 
+    /**BUBBLE SORT*/
     public static int[] bubbleSort(int[] array) {
         int length = array.length;
         while (length != 0) {
@@ -32,6 +29,7 @@ public class Main {
         return array;
     }
 
+    /**SELECTION SORT*/
     public static int[] selectionSort(int[] array) {
         int length = array.length;
         for (int i = 0; i < length; i++) {
@@ -49,6 +47,7 @@ public class Main {
         return array;
     }
 
+    /**INSERTION SORT*/
     public static int[] insertionSort(int[] array) {
         int length = array.length;
         for (int i = 1; i < length; i++) {
@@ -63,22 +62,35 @@ public class Main {
         return array;
     }
 
-    public static int partOfSortLomuto(int[] arr, int start, int end) {
-        int left = start;
-        for (int current = start; current < end; current++) {
-            if (arr[current] <= arr[end]) {
-                int temp = arr[left];
-                arr[left] = arr[current];
-                arr[current] = temp;
-                left++;
-            }
+    /**QUICK SORT*/
+    public static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(array, low, high);
+            quickSort(array, low, partitionIndex - 1);
+            quickSort(array, partitionIndex + 1, high);
         }
-        int temp = arr[left];
-        arr[left] = arr[end];
-        arr[end] = temp;
-        return left;
     }
 
+    public static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (array[j] < pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+
+        return i + 1;
+    }
+
+    /**BINARY SEARCH*/
     public static int binarySearch(int[] array, int num) {
         int jr = 0;
         int sr = array.length - 1;
