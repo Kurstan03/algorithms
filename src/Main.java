@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         int[] array = new int[]{2, 5, 1, 8, 200, 3, 9, 1};
-        int[] sortedArray = insertionSort(array);
+        int[] sortedArray = bubbleSort(array);
         System.out.println(Arrays.toString(sortedArray));
     }
 
@@ -57,6 +57,17 @@ public class Main {
                 array[sorted] = array[sorted + 1];
                 array[sorted + 1] = temp;
                 sorted--;
+            }
+        }
+        return array;
+    }
+    public static int[] insertionSort2(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            while (i > -1 && array[i] > array[i + 1]) {
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+                i--;
             }
         }
         return array;
